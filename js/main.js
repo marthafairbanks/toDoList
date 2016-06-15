@@ -36,7 +36,18 @@ $(document).ready(function() {
 			}
 	  	});
 	  	 
-	  	$("span").html(($("article").length) - $("article.completed").length);
+	  	itemCount();
+	}
+	
+	// updates the "items left" counter and writes it to html, gets called on writeToDos()
+	function itemCount() {
+		var counter = 0;
+		toDoArray.forEach(function(toDoArray) {
+			if (toDoArray.isComplete === false) {
+				counter += 1;
+			}
+		})
+		$("span").html(counter);
 	}
 
 	//on the delete click, removes the list item from the array, calls the function writeToDos
@@ -111,5 +122,5 @@ $(document).ready(function() {
 					$(".items").append("<li><article class='completed'><button class='check'></button><p>" + toDoArray.value + "</p><button class='delete'>X</button></article></li>");				
 				}
 		})
-	})
+	})	
 });
